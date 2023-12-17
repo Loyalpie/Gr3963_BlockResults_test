@@ -7,7 +7,35 @@ int ReadData(string msg)
     return int.Parse(Console.ReadLine());
 }
 
+//метод создает новый массив и заполняет его строками, длина которых меньши либо равна 3
+string[] CreateNewArray(string[] array)
+{
+    int len = 0; // переменная, которая будет использоваться в новом массиве для его длины
 
+    //проверяет все элементы исходного массива. если длина элемента <= 3 увеличивает len на 1
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length <= 3) len++;
+    }
+
+    string[] newArray = new string[len]; //создаем новый массив длины len
+
+    //заполняет новый массив строками с длиной меньше либо равной 3
+
+    int index = 0; //переменная для индексов нового элемента
+
+    //цикл заполнения нового массива
+    for (int i = 0; i < array.Length; i++)
+    {
+        //если элемент исходного массива <= 3 то присваивает его значение элементу нового массива
+        if (array[i].Length <= 3) 
+        {
+            newArray[index] = array[i];
+            index++;
+        }
+    }
+    return newArray;
+}
 
 //метод генерации массива
 string[] GenArray(int len)
@@ -34,3 +62,10 @@ void PrintArray(string[] array)
     Console.WriteLine(array[array.Length - 1] + "]");
 }
 
+int len = ReadData("Введите количество элементов массива: "); //длина исходного массива
+
+string[] array = GenArray(len); //создание исходного массвиа
+PrintArray(array); // вывод исходного массвиа
+
+string[] newArray = CreateNewArray(array); //создание нового массива
+PrintArray(newArray); //вывод нового массива
